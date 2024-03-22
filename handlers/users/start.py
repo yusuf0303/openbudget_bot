@@ -29,7 +29,7 @@ voted_btn.add(vote).add(connect)
 async def bot_start(message: types.Message):
     await message.answer(f"Assalomu alaykum, {message.from_user.full_name}!\nBotga xush kelibsiz 🤗\n\n"
                          f"Ovoz berish uchun pastdagi ovoz berish tugmasini bosing 👇\nOvoz berib bo'lganizda har bir "
-                         f"ovoz uchun 10.000 so'mdan pulni plastik kartangizga 💳 yoki telefon raqamingizga 📲 tushirib "
+                         f"ovoz uchun 20.000 so'mdan pulni plastik kartangizga 💳 yoki telefon raqamingizga 📲 tushirib "
                          f"olishingiz mumkin",
                          reply_markup=vote_btn)
 
@@ -141,23 +141,23 @@ async def vote_type(call: types.CallbackQuery, state: FSMContext):
                                text=f"Ovozingiz tasdiqlandi ✅\nPullaringizni olish uchun 'Admin ☎️' ga telefon "
                                     f"raqamingiz"
                                     f" yoki plastik kartangiz raqamini yozib qoldiring 👇\n\n"
-                                    f"Sizning hisobingizda {this_user * 10000} so'm bor",
+                                    f"Sizning hisobingizda {this_user * 20000} so'm bor",
                                reply_markup=vote_btn)
         await bot.send_message(chat_id=user_id, text="Ovoz berishda davom eting 🗣️👇", reply_markup=voted_btn)
         await call.message.edit_text(text=f"Foydalanuvchi: {phone_number}\n\nFoydalanuvchi hisobida: "
-                                          f"{this_user * 10000} so'm bor!")
+                                          f"{this_user * 20000} so'm bor!")
     elif callback == 'failed':
         this_user = users_amount.count(user_id)
         await call.answer("Bekor qilindi ❌")
         await bot.send_message(chat_id=user_id, text="Ushbu raqam bilan oldinroq ovoz bergansiz ❌\n"
                                                      "Boshqa raqam bilan urinib ko'ring\n\n"
-                                                     f"Sizning hisobingizda {this_user * 10000} so'm bor",
+                                                     f"Sizning hisobingizda {this_user * 20000} so'm bor",
                                reply_markup=voted_btn)
         await call.message.edit_text(text=f"Yangi ovoz 🗣️bekor qilindi\n\nID: {call.from_user.id} 🆔\n"
                                           f"Foydalanuvchi: {call.from_user.full_name}\n"
                                           f"Foydalanuvchi nomi: @{call.from_user.username}\n"
                                           f"Telefon raqam: {phone_number}\n\n"
-                                          f"Foydalanuvchi hisobida: {this_user * 10000} so'm bor!")
+                                          f"Foydalanuvchi hisobida: {this_user * 20000} so'm bor!")
         # await call.message.delete_reply_markup()
     elif callback == 'paid':
         await call.answer("Muvaffaqiyatli yakunlandi ✅")
